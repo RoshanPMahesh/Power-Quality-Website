@@ -35,6 +35,7 @@ const QualityContent = () => {
     Object.keys(data).forEach((metric) => {
       //console.log(data);
       if (data[metric].length > 0) {
+        // something buggy here too, check the values of these
         renderChart(metric, data[metric]);
       }
     });
