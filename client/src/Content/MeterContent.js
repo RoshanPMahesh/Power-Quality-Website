@@ -28,6 +28,10 @@ const MeterContent = () => {
     Object.keys(data).forEach((metric) => {
       if (data[metric].length > 0) {
         renderChart(metric, data[metric]);
+      } else {
+        return (
+          <h3>Loading...</h3>
+        );
       }
     });
   }, [data]);
