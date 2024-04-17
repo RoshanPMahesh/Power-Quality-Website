@@ -42,8 +42,14 @@ const connection = pool.promise();
 
 const fetchDataForOutlet = async (outletName) => {
   try {
-    const [rows, fields] = await connection.query('SELECT * FROM PowerData WHERE outlet_name = ? ORDER BY measurement_time DESC LIMIT 10', [outletName]);
-    io.emit(outletName, rows.reverse());
+    if (outletName === "ECEB") {
+      const [rows, fields] = await connection.query('SELECT * FROM PowerData WHERE outlet_name = ? ORDER BY measurement_time DESC LIMIT 10', [outletName]);
+      io.emit(outletName, rows.reverse());
+    } else {
+      const [rows, fields] = await connection.query('SELECT * FROM PowerData WHERE load_name = "CHARGER" ORDER BY measurement_time DESC LIMIT 10');
+      io.emit("CHARGER", rows.reverse());
+    }
+    
   } catch (error) {
     console.error(`Error fetching data for ${outletName}:`, error);
   }

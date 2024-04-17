@@ -1,7 +1,3 @@
-//import axios from 'axios';
-//import { w3cwebsocket as WebSocket } from 'websocket';
-//import { Line } from 'react-chartjs-2';
-
 import React, { useEffect, useState, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
 import io from 'socket.io-client';
@@ -15,14 +11,11 @@ const QualityContent = () => {
     const socket = io('http://localhost:8080');
 
     socket.on('ECEB', (newData) => {
-      // i dont think it should append data to itself - definetly a bug
-      newData.forEach(entry => {
-        setData(prevData => ({
-          voltage: [...prevData.voltage, entry.voltage],
-          current: [...prevData.current, entry.current],
-          apparentPower: [...prevData.apparentPower, entry.apparent_power],
-          realPower: [...prevData.realPower, entry.real_power]
-        }));
+      setData({
+        voltage: newData,
+        current: newData,
+        apparentPower: newData,
+        realPower: newData
       });
     });
 
@@ -33,9 +26,7 @@ const QualityContent = () => {
 
   useEffect(() => {
     Object.keys(data).forEach((metric) => {
-      //console.log(data);
       if (data[metric].length > 0) {
-        // something buggy here too, check the values of these
         renderChart(metric, data[metric]);
       }
     });
@@ -50,7 +41,13 @@ const QualityContent = () => {
           labels: chartData.map((row) => row.measurement_time),
           datasets: [{
             label: `${metric} Data`,
-            data: chartData.map((row) => row[metric]),
+            data:  chartData.map((row) => {
+              if (metric === 'apparentPower' || metric === 'realPower') {
+                return row[metric === 'apparentPower' ? 'apparent_power' : 'real_power'];
+              } else {
+                return row[metric];
+              }
+            }),
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
@@ -67,7 +64,13 @@ const QualityContent = () => {
       });
     } else {
       chartRefs.current[metric].data.labels = chartData.map((row) => row.measurement_time);
-      chartRefs.current[metric].data.datasets[0].data = chartData.map((row) => row[metric]);
+      chartRefs.current[metric].data.datasets[0].data =  chartData.map((row) => {
+        if (metric === 'apparentPower' || metric === 'realPower') {
+          return row[metric === 'apparentPower' ? 'apparent_power' : 'real_power'];
+        } else {
+          return row[metric];
+        }
+      });
       chartRefs.current[metric].update();
     }
   };
@@ -89,73 +92,5 @@ const QualityContent = () => {
     </div>
   );
 };
-
-
-
-
-// const QualityContent = () => {
-//   const [ecebData, setEcebData] = useState([]);
-//   const ecebChartRef = useRef(null);
-
-//   useEffect(() => {
-//     const socket = io('http://localhost:8080');
-
-//     socket.on('ECEB', (newData) => {
-//       setEcebData(newData);
-//     });
-
-//     return () => {
-//       socket.disconnect();
-//     };
-//   }, []);
-
-//   useEffect(() => {
-//     renderChart('ECEB', ecebData);
-//   }, [ecebData]);
-
-//   const renderChart = (outletName, data) => {
-//     if (data.length === 0) return;
-
-//     if (!ecebChartRef.current) {
-//       const labels = data.map((row) => row.measurement_time);
-//       const realPowerData = data.map((row) => row.real_power);
-
-//       const ctx = document.getElementById(`${outletName}Chart`);
-//       ecebChartRef.current = new Chart(ctx, {
-//         type: 'line',
-//         data: {
-//           labels: labels,
-//           datasets: [{
-//             label: `${outletName} Real Power`,
-//             data: realPowerData,
-//             fill: false,
-//             borderColor: 'rgb(75, 192, 192)',
-//             tension: 0.1
-//           }]
-//         },
-//         options: {
-//           scales: {
-            
-//             y: {
-//               beginAtZero: true
-//             }
-//           }
-//         }
-//       });
-//     } else {
-//       ecebChartRef.current.data.labels = data.map((row) => row.measurement_time);
-//       ecebChartRef.current.data.datasets[0].data = data.map((row) => row.real_power);
-//       ecebChartRef.current.update();
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <div>
-//         <canvas id="ECEBChart" width="150" height="75"></canvas>
-//       </div>
-//     </div>
-//   );
-// };
 
 export default QualityContent;
