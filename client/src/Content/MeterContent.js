@@ -11,7 +11,6 @@ const MeterContent = () => {
     const socket = io('http://localhost:8080');
 
     socket.on('CHARGER', (newData) => {
-      console.log(newData);
       setData({
         voltage: newData,
         current: newData,
