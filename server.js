@@ -42,9 +42,23 @@ const fetchDataForOutlet = async (outletName) => {
   }
 };
 
+let id = 0;
+const deviationsCheck = async () => {
+  try {
+    const [rows, fields] = await connection.query('SELECT data_id, voltage FROM PowerData WHERE outlet_name = "ECEB" ORDER BY measurement_time DESC LIMIT 1');
+    if ((rows[0].voltage <= 114 || rows[0].voltage >= 126) && rows[0].data_id != id) {
+      id = rows[0].data_id
+      io.emit("NOTIF", rows);
+    }
+  } catch (error) {
+    console.error('Error fetching data for deviationsCheck: ', error);
+  }
+};
+
 const fetchData = async () => {
   await fetchDataForOutlet('ECEB');
   await fetchDataForOutlet('CHARGER');
+  await deviationsCheck();
 };
 
 setInterval(fetchData, 1000); // Fetch data for both outlets every second

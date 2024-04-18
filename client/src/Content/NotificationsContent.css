@@ -1,0 +1,27 @@
+.container {
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .heading {
+    margin-bottom: 15px;
+  }
+  
+  .logContainer {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .logItem {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .label {
+    font-weight: bold;
+  }
