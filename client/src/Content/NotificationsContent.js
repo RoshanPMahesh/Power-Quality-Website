@@ -31,7 +31,7 @@ function NotificationsContent() {
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [errorLogs]);
 
   return (
     <div className="container">
