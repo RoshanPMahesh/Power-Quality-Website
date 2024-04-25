@@ -6,52 +6,42 @@ function NotificationsContent() {
   const [errorLogs, setErrorLogs] = useState([]);
 
   useEffect(() => {
-    // Load error logs from local storage when component mounts
-    const storedLogs = localStorage.getItem('errorLogs');
-    if (storedLogs) {
-      setErrorLogs(JSON.parse(storedLogs));
-    }
-
     const socket = io('http://localhost:8080');
 
     socket.on('NOTIF', (newData) => {
-      // Create a new log object with timestamp and message
-      const newLog = {
-        timestamp: 0,
-        message: `Power outlet voltage at ${newData[0].voltage}V`
-      };
+      newData.forEach((log) => {
+        log.measurement_time = log.measurement_time.replace(/[a-zA-Z]/g, ' ');
+      });
 
-      // Update errorLogs state by merging the new log with the existing logs
-      setErrorLogs(prevLogs => [newLog, ...prevLogs]);
-
-      // Store updated logs in local storage
-      localStorage.setItem('errorLogs', JSON.stringify([newLog, ...errorLogs]));
+      setErrorLogs(newData); // Replace errorLogs with the new data
     });
 
     return () => {
       socket.disconnect();
     };
-  }, [errorLogs]);
+  }, []);
 
-  return (
-    <div className="container">
-      <h2 className="heading">Error Logs</h2>
-      <div className="logContainer">
-        {console.log(errorLogs)}
-        {errorLogs.map((log, index) => (
-          <div key={index} className="logItem">
-            <div><span className="label">Timestamp:</span> {log.timestamp}</div>
-            <div><span className="label">Message:</span> {log.message}</div>
-          </div>
-        ))}
+  const renderLogs = () => {
+    if (errorLogs.length === 0) {
+      return <h3>No voltage fluctuations</h3>; // Display message when there are no error logs
+    }
+
+    return (
+      <div className="container">
+        <h2 className="heading">Error Logs</h2>
+        <div className="logContainer">
+          {errorLogs.map((log, index) => (
+            <div key={index} className="logItem">
+              <div><span className="label">Timestamp:</span> {log.measurement_time}</div>
+              <div><span className="label">Message:</span> Power outlet voltage at {log.voltage}V</div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  return renderLogs(); // Call renderLogs function to render the logs
 }
 
 export default NotificationsContent;
-
-// Whats left:
-// 1. Having time of issue
-// 2. Having the notifications button have a dot or some indication of a new notif
-// 3. Styling
