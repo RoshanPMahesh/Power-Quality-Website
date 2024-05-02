@@ -80,6 +80,14 @@ Objective: Finish writing and submitting the design document.
 
 Meeting cancelled due to Design Review with Surya and Professor Schuh.
 
+# Design Review: February 28, 2024
+
+Objective: Present our design plans, circuit diagrams, and website sketches to Professor Schuh and Surya
+
+- We presented everything from the Design Document. We individually spoke on the parts of the document that we wrote.
+- Professor Schuh had a few questions regarding how we are going to take wall power, how we are going to account for certain electrial problems, and a question regarding the step down unit. He also had a question about how the data is transferred from the ESP32 to the website and how the data is formatted/represented.
+- Overall, we presented well and we answered the questions well.
+
 # TA Meeting: March 6, 2024
 
 Objective of session: Go over our progress and ask Surya any questions. Overall, it was a short meeting since there wasn't much to discuss
@@ -100,6 +108,18 @@ Objective of session: Go over our progress and ask Surya any questions.
 - Might not need LCD screen, redundant with website.
 - Need to meet with machine shop to tell them we just need a box, or we just make it ourselves.
 
+# PCB work: March 26, 2024
+
+Objective: Submit the step down and control unit PCB.
+
+- Met with group to finish off the 1st PCB.
+- Soham had spent the last week working on the step down/control unit PCB. We hadn't finished the power supply PCB yet.
+- The PCB design wasn't passing the inspection before we could submit it due to not having a board layer outline.
+- I was trying to help my group by googling the issue and finding out how to fix it since none of us have PCB making experience.
+- Eventually we were able to find a website that explained the error and how to fix it. Soham then made the changes within 5 minutes, which consisted of going to the board layer and just indicating the outline of the PCB.
+- The PCB then passed inspection, and it was submitted to be manufactured for the 3rd round.
+- Images of the step down and control unit schematics are in the repo labeled "ECE 445 Step Down Schematic.png" and "ECE 445 Control Unit Schematic.png".
+
 # TA Meeting: March 27, 2024
 
 Objective of session: Go over our progress and ask Surya any questions.
@@ -109,6 +129,14 @@ Objective of session: Go over our progress and ask Surya any questions.
 - We aren’t using machine shop, we don’t think it’ll be complicated and won’t take up too much time.
 - Ordered the first PCB, second PCB will be ordered next week.
 - We will be working on the 2nd PCB, simulate first PCB and continue to look over it for errors.
+
+# PCB work: April 1, 2024
+
+Objective: Submit the power supply PCB
+
+- Nicole had gotten the PCB to pass inspection, so we didn't need to congregate as a group to debug it.
+- Submitted the board for the 4th round.
+- Images of the power supply schematics are in the repo labeled "ECE 445 Power Supply Schematic.png".
 
 # TA Meeting: April 3, 2024
 
@@ -137,7 +165,7 @@ Objective of session: Go over our progress and ask Surya any questions.
 
 # TA Meeting: April 17, 2024
 
-Objective of session: Go over our progress and ask Surya any questions. Also went over what to expect for the final demo.
+Objective of session: Go over our progress and ask Surya any questions. Also did a mock demo to go over what to expect for the final demo.
 
 - Presented introduction, high-level requirements, what works, and what doesn’t work yet.
 - Explained the work we have left and our plans to complete the project.
@@ -146,3 +174,31 @@ Objective of session: Go over our progress and ask Surya any questions. Also wen
 - Not able to have the website working on Illinois WiFi due to security constraints on the WiFi. My hotspot isn’t strong enough to connect either.
   - Will need to figure this out by the final demo.
 - Surya is overall happy with the progress, especially compared to the state of the project a week ago.
+
+# Final Demo: April 24, 2024
+
+Objective: Demo the final product to Professor Schuh and Surya.
+
+- We set up the demo so that Nicole would first go over problems that we aim to solve, our solution, and our high-level requirements.
+- Then Nicole and Soham demoed the full functionality of the power supply, step down, and control unit PCBs. Unfortunately, we couldn't get the control unit subsystem to work; however, we were able to get the other 2 subsystems to completely work.
+- I then closed off the presentation going over the database and the website. Since IllinoisNet Wi-Fi blocks connections to Google Cloud, I had to take a video of the website working for the demo.
+- Professor Schuh had a few questions regarding the current signal that we were reading and why the graph wasn't perfectly sinusoidal. We explained that it was probably the battery powered part of the circuit that is introducing some harmonics or capacitance that is impacting the current graph.
+- Overall, we presented pretty well and Surya said that we did well. An image of our finalized physical product is in the repo labeled "ECE 445 Final Project.png".
+
+# Final Presentation: April 30, 2024
+
+Objective: Present the problem that we were trying to solve, our solution, what worked, what didn't work, and potential future work of our project to Professor Schuh and Surya.
+
+- We working on the presentation on April 29th. We added slides that were specific to the parts of the project that we each worked on. We made sure to add plenty of images, diagrams, schematics, and reduce the number of words wherever we could.
+- We practiced the presentation at 11:30am on April 30th to make sure we knew how to transition to each of our parts and stay within the time limit.
+- Nicole introduced us, discussed the problem we're solving, our solution, the block diagram, and our high-level requirements.
+- Soham then talked about the step down and control unit, and Nicole talked about the power supply unit.
+- I then talked about the database subsystem, which was the Google Cloud database and website. I explained how the data is transferred, how the website satisfied R&V tables, and showed a video of the website working. That video is linked in the repo titled "Short Demo.mp4".
+- All 3 of us closed it off by explaining what we could've done better, lessons we learned, and future work on the project that could be done.
+
+# Final Paper: May 1, 2024
+
+Objective: Write a paper that covers everything that we did this semester and everything we discussed from the final presentation.
+
+- We each explained what we worked on, how we debugged the project, what worked, and what didn't work.
+- We then formatted the paper to the guidelines and specifications.
