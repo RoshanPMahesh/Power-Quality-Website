@@ -2,7 +2,7 @@ stuff to note down:
 1. ta meetings
 2. block diagrams/figma image from paper/images of website and database
 3. meeting with group
-4. what i worked on and when - use commit history to help
+4. what i worked on and when - use commit history to help - include websites I used that helped me
 5. work i did with group for deadlines (presentations, papers, pcb deadlines)
 6. soldering assignment and CAD assignment??
 
@@ -22,6 +22,15 @@ Objective of session: To meet with Surya for the first time.
 - Also asked Surya about who Jack Blevins is since we got a random email from him about him being our mentor. We weren't sure if this was a spam email.
     -  Surya wasn't sure who he is either, said he'll get back to us.
 - Design proposal due this Thursday
+
+# Project Proposal: February 8, 2024
+
+Objective: Finish writing and submitting the project proposal.
+
+- Nicole wrote about the power supply unit. She also made the block diagram and the visual aid that we used for the paper. An image of the block diagram and visual aid are included in this repo, which is called "ECE 445 Visual Aid.png" and "ECE 445 Block Diagram.png".
+- Soham wrote about the step down unit and the hardware portion of the control unit.
+- I wrote about the website and software portion of the control unit. I explained that we would use JavaScript libraries to make the website and graphs, and Google Cloud for our database.
+- We submitted the paper on time on February 8th.
 
 # TA Meeting: February 14, 2024
 
@@ -51,8 +60,21 @@ Objective of session: Go over our progress and ask Surya any questions.
 
 - I missed this meeting due to prior commitments for another class. Soham and Nicole caught me up on what was discussed, which is shown below.
 - Currently working on the Design Document.
+- We went over our high-level requirements with Surya. He thought that they were ok, but he wanted us to be more quantitative with them so that they can be verified through testing.
 - Had a question about the LiFePo batteries, was referred to CHARMS paper since they used LiFePo batteries.
 - Surya also wanted us to mirror the paper for its formatting.
+
+# Design Document: February 22, 2024
+
+Objective: Finish writing and submitting the design document.
+
+- We had a similar split of the workload as the project proposal:
+    - Nicole worked on the power supply topics, the cost & schedule, the block diagram, and the physical design.
+    - Soham worked on the step down topics, the hardware portion of the control unit, and the tolerance analysis.
+    - I worked on the introduction, database topics, the software portion of the control unit, and the ethics & safety.
+- For my part on the database subsystem, I also used Figma to create a rough outline of what the website would look like. This image is attached in the repo. It's called "ECE 445 Figma Sketch.png". Keep in mind that this isn't the actual website, it's just what I envision it to look like.
+- For the ethics & safety, I discussed OSHA and IEEE standards. For the introduction, I found research online that showcased the problem that we were trying to solve.
+- We submitted the design document on time on Febrary 22nd.
 
 # TA Meeting: February 28, 2024
 
